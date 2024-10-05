@@ -12,7 +12,7 @@ fi
 
 # Insert the line after the first line
 sed -i.bak '1 a\
-  auth       sufficient     pam_tid.so
+auth       sufficient     pam_tid.so
   ' "$PAM_FILE"
 
 # Check if the line was successfully added
