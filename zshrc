@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # brew shell completion
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 if type brew &>/dev/null
@@ -73,10 +80,8 @@ zinit load agkozak/zsh-z
 
 zinit snippet OMZP::sudo 
 
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
 
 # omz
 export ZSH="$HOME/.oh-my-zsh"
@@ -98,3 +103,6 @@ else
     fi
 fi
 unset __conda_setup
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
