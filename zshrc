@@ -16,16 +16,9 @@ fi
 
 export HOMEBREW_NO_INSTALL_CLEANUP=true
 
-# PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export LC_ALL=en_US.UTF-8
-
 
 export PATH="$HOME/bin:$PATH"
-
-# export PATH="$HOME/Maven/bin:$PATH"
-
-# [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
