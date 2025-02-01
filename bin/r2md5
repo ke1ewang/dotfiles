@@ -1,9 +1,0 @@
-#!/bin/bash
-# Change the file name prefix to its md5 value.
-
-for i in "$@"; do
-  sum=$(echo -n "$i" | md5sum)
-  new_name="${sum%% *}.$(echo "$i" | awk -F'.' '{print $NF}')"
-  mv "$i" "$new_name"
-done
-
