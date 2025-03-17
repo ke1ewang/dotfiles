@@ -2,6 +2,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -23,11 +30,27 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(zoxide init zsh)"
 
+export BAT_THEME="GitHub"
+
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
+
 export HOMEBREW_NO_INSTALL_CLEANUP=true
 
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
@@ -43,12 +66,15 @@ esac
 
 __conda_setup="$('/Users/kele/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/Users/kele/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/kele/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/kele/miniforge3/bin:$PATH"
-    fi
+  if [ -f "/Users/kele/miniforge3/etc/profile.d/conda.sh" ]; then
+    . "/Users/kele/miniforge3/etc/profile.d/conda.sh"
+  else
+    export PATH="/Users/kele/miniforge3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
+
+
+alias ag="aichat"
