@@ -30,7 +30,7 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(zoxide init zsh)"
 
-export BAT_THEME="GitHub"
+export BAT_THEME="base16"
 
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
@@ -50,6 +50,8 @@ export HOMEBREW_NO_INSTALL_CLEANUP=true
 
 
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
+
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -78,3 +80,5 @@ unset __conda_setup
 
 
 alias ag="aichat"
+alias cat="bat"
+alias lab="ssh why@lab"
