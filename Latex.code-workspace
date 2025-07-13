@@ -66,6 +66,7 @@
         "tools": ["bibtex"]
       }
     ],
+    "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.latex.clean.method": "glob",
     "latex-workshop.latex.autoClean.run": "onBuilt",
     "latex-workshop.latex.clean.fileTypes": [
